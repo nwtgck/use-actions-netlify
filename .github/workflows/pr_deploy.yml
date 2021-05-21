@@ -27,6 +27,8 @@ jobs:
               repo: 'use-actions-netlify',
               pull_number: 3
             });
+            echoExecSync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
+            echoExecSync(`git config user.name "github-actions[bot]"`);
             echoExecSync(`git status`);
             console.log(r);
             const prUserName = r.data.head.user.login;
