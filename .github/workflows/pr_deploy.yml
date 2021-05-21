@@ -30,15 +30,10 @@ jobs:
               repo: context.repo.repo,
               pull_number: 3 // TODO: hard code
             });
-            echoExecSync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
-            echoExecSync(`git config user.name "github-actions[bot]"`);
-            const prUserName = r.data.head.user.login;
             const baseRef = r.data.base.ref;
-            const headRef = r.data.head.ref;
-            const fullRepoName = r.data.head.repo.full_name;
             echoExecSync(`git checkout ${baseRef}`);
             echoExecSync(`git checkout -b preview ${baseRef}`);
-            echoExecSync(`git pull https://github.com/${fullRepoName}.git ${headRef}`);
+            echoExecSync(`git pull https://github.com/${r.data.head.repo.full_name}.git ${r.data.head.ref}`);
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
