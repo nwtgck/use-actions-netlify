@@ -20,7 +20,7 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const r = await githubClient.pulls.get({
+            const r = await github.pulls.get({
               owner: 'nwtgck',
               repo: 'use-actions-netlify',
               pull_number: 3
