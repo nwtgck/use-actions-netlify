@@ -71,6 +71,6 @@ jobs:
               description: 'preview',
               state: 'success',
               sha: "${{ steps.merge.outputs.sha }}",
-              target_url: "https://example.com"
+              target_url: "${{ steps.netlify.outputs.deploy-url }}"
             })
             
