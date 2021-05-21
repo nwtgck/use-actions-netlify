@@ -33,7 +33,9 @@ jobs:
             echoExecSync(`git checkout -b preview ${baseRef}`);
             echoExecSync(`git pull https://github.com/${r.data.head.repo.full_name}.git ${r.data.head.ref}`);
             core.setOutput('sha', r.data.head.sha);
-      # Build
+
+      # ... Build here ...
+
       - name: Deploy to Netlify
         id: netlify
         uses: nwtgck/actions-netlify@v1.2
