@@ -33,27 +33,26 @@ jobs:
             echoExecSync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
             echoExecSync(`git config user.name "github-actions[bot]"`);
             echoExecSync(`git status`);
-            console.log(r);
+            // console.log(r);
             const prUserName = r.data.head.user.login;
             const baseRef = r.data.base.ref;
             const headRef = r.data.head.ref;
             const fullRepoName = r.data.head.repo.full_name;
             echoExecSync(`git checkout ${baseRef}`);
             echoExecSync(`git checkout -b preview ${baseRef}`);
-            echoExecSync(`git pull --no-ff https://github.com/${fullRepoName}.git ${headRef}`);
+            echoExecSync(`git pull https://github.com/${fullRepoName}.git ${headRef}`);
             echoExecSync(`git status`);
             echoExecSync(`git log`);
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './public'
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-      # - name: Deploy to Netlify
-      #   uses: nwtgck/actions-netlify@v1.2
-      #   with:
-      #     publish-dir: './public'
-      #     production-branch: master
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     deploy-message: "Deploy from GitHub Actions"
-      #     enable-pull-request-comment: false
-      #     enable-commit-comment: false
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      #   timeout-minutes: 1
