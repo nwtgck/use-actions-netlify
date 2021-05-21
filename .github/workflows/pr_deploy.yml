@@ -26,14 +26,12 @@ jobs:
             const {execSync} = require('child_process');
             function echoExecSync(cmd) { console.log(cmd); execSync(cmd) }
             const r = await github.pulls.get({
-              owner: 'nwtgck',
-              repo: 'use-actions-netlify',
-              pull_number: 3
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: 3 // TODO: hard code
             });
             echoExecSync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
             echoExecSync(`git config user.name "github-actions[bot]"`);
-            echoExecSync(`git status`);
-            // console.log(r);
             const prUserName = r.data.head.user.login;
             const baseRef = r.data.base.ref;
             const headRef = r.data.head.ref;
@@ -41,8 +39,6 @@ jobs:
             echoExecSync(`git checkout ${baseRef}`);
             echoExecSync(`git checkout -b preview ${baseRef}`);
             echoExecSync(`git pull https://github.com/${fullRepoName}.git ${headRef}`);
-            echoExecSync(`git status`);
-            echoExecSync(`git log`);
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
