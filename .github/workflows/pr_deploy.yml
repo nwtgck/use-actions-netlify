@@ -1,13 +1,4 @@
-# on:
-  #  workflow_dispatch:
-  #    inputs:
-  #      pull_request:
-  #        description: 'Pull request number'
-  #        required: true
-
-# ${{ github.event.inputs.pull_request }}"
-
-name: Deploy PR (WIP)
+name: Preview forked PR
 on:
   workflow_dispatch:
     inputs:
@@ -45,14 +36,13 @@ jobs:
       # Build
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@feature/github-deployment-ref 
+        uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './public'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           enable-commit-comment: false
-          github-deployment-ref: ${{ steps.merge.outputs.sha }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -71,4 +61,3 @@ jobs:
               sha: "${{ steps.merge.outputs.sha }}",
               target_url: "${{ steps.netlify.outputs.deploy-url }}"
             })
-            
