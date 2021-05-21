@@ -65,6 +65,6 @@ jobs:
               context: 'Netlify',
               description: 'preview',
               state: 'success',
-              sha: '${{ steps.merge.outputs.sha }}',
+              sha: "${{ steps.merge.outputs.sha }}",
               target_url: "${{ steps.netlify.outputs.deploy-url }}"
             })
