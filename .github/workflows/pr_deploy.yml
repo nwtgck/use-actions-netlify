@@ -38,7 +38,7 @@ jobs:
             echoExecSync(`git pull https://github.com/${r.data.head.repo.full_name}.git ${r.data.head.ref}`);
       # Build
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@feature/github-deployment-ref 
         with:
           publish-dir: './public'
           production-branch: master
@@ -46,6 +46,7 @@ jobs:
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           enable-commit-comment: false
+          github-deployment-ref: 8c47e6982bcd31082dbecdcd8a661a06ea70a8eb
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
