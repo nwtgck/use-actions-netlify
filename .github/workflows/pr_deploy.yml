@@ -1,0 +1,42 @@
+on:
+   workflow_dispatch:
+     inputs:
+       pull_request:
+         description: 'Pull request number'
+         required: true
+
+# ${{ github.event.inputs.pull_request }}"
+
+name: Deploy PR (WIP)
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const r = await githubClient.pulls.get({
+              owner: 'nwtgck',
+              repo: 'use-actions-netlify',
+              pull_number: 3
+            });
+            console.log(r);
+        timeout-minutes: 1
+      # - name: Deploy to Netlify
+      #   uses: nwtgck/actions-netlify@v1.2
+      #   with:
+      #     publish-dir: './public'
+      #     production-branch: master
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     deploy-message: "Deploy from GitHub Actions"
+      #     enable-pull-request-comment: false
+      #     enable-commit-comment: false
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #   timeout-minutes: 1
