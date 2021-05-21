@@ -6,7 +6,7 @@ on:
         description: 'Pull request number'
         required: true
 jobs:
-  build:
+  preview:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -48,7 +48,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-      - name: Status
+      - name: Create commit status
         uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
