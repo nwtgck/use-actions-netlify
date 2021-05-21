@@ -39,6 +39,7 @@ jobs:
             echoExecSync(`git pull https://github.com/${r.data.head.repo.full_name}.git ${r.data.head.ref}`);
       # Build
       - name: Deploy to Netlify
+        id: netlify
         uses: nwtgck/actions-netlify@feature/github-deployment-ref 
         with:
           publish-dir: './public'
@@ -63,5 +64,5 @@ jobs:
               description: 'my deployment',
               state: 'success',
               sha: '8c47e6982bcd31082dbecdcd8a661a06ea70a8eb',
-              target_url: "https://exmaple.com"
+              target_url: "${{ steps.netlify.outputs.deploy-url }}"
             })
