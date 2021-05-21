@@ -1,9 +1,9 @@
 # on:
-#    workflow_dispatch:
-#      inputs:
-#        pull_request:
-#          description: 'Pull request number'
-#          required: true
+  #  workflow_dispatch:
+  #    inputs:
+  #      pull_request:
+  #        description: 'Pull request number'
+  #        required: true
 
 # ${{ github.event.inputs.pull_request }}"
 
@@ -11,6 +11,11 @@ name: Deploy PR (WIP)
 on:
   push:
   pull_request:
+  workflow_dispatch:
+    # inputs:
+    #   pull_request:
+    #     description: 'Pull request number'
+    #     required: true
 jobs:
   build:
     runs-on: ubuntu-18.04
