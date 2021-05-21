@@ -26,7 +26,7 @@ jobs:
               repo: 'use-actions-netlify',
               pull_number: 3
             });
-            git status
+            execSync(`git status`);
             console.log(r);
             const prUserName = r.data.head.user.login;
             const baseRef = r.data.base.ref;
@@ -35,8 +35,8 @@ jobs:
             execSync(`git checkout ${baseRef}`);
             execSync(`git checkout -b preview ${baseRef}`);
             execSync(`git pull https://github.com/${fullRepoName}.git ${headRef}`);
-            git status
-            git log
+            execSync(`git status`);
+            execSync(`git log`);
         timeout-minutes: 1
       # - name: Deploy to Netlify
       #   uses: nwtgck/actions-netlify@v1.2
