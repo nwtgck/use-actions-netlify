@@ -9,13 +9,11 @@
 
 name: Deploy PR (WIP)
 on:
-  push:
-  pull_request:
   workflow_dispatch:
-    # inputs:
-    #   pull_request:
-    #     description: 'Pull request number'
-    #     required: true
+    inputs:
+      pull_request:
+        description: 'Pull request number'
+        required: true
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -35,7 +33,7 @@ jobs:
             const r = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: 3 // TODO: hard code
+              pull_number: ${{ github.event.inputs.pull_request }}
             });
             echoExecSync(`git config user.email "github-actions[bot]@users.noreply.github.com"`);
             echoExecSync(`git config user.name "github-actions[bot]"`);
