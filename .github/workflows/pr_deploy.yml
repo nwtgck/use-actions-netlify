@@ -1,9 +1,9 @@
-on:
-   workflow_dispatch:
-     inputs:
-       pull_request:
-         description: 'Pull request number'
-         required: true
+# on:
+#    workflow_dispatch:
+#      inputs:
+#        pull_request:
+#          description: 'Pull request number'
+#          required: true
 
 # ${{ github.event.inputs.pull_request }}"
 
