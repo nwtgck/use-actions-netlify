@@ -6,7 +6,8 @@ on:
 permissions:
   # for create-a-commit-status
   statuses: write
-  # deployments: write
+  # for create-a-deployment
+  deployments: write
 
 jobs:
   build:
