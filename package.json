@@ -1,0 +1,20 @@
+{
+  "name": "use-actions-netlify",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nwtgck/use-actions-netlify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nwtgck/use-actions-netlify/issues"
+  },
+  "homepage": "https://github.com/nwtgck/use-actions-netlify#readme",
+  "dependencies": {
+    "core-js": "^2.6.12"
+  }
+}
