@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Netlify
-        uses: nojvek/actions-netlify@adac04d0ed06a083230641bb15d8ccdc971a733a
+        uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './public'
           production-branch: master
