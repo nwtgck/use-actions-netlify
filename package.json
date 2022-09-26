@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/nwtgck/use-actions-netlify#readme",
   "dependencies": {
-    "core-js": "^2.6.12"
+    "core-js": "^3.25.3"
   }
 }
